@@ -164,3 +164,8 @@ THEN
 I should have a functioning environment ready to start coding  
 AND  
 I can run the frameworks default app  
+
+Installed Reacte Native and Expo  
+installed Expo go mobil app 
+use **npx expo start** to create QR code for Expo go app  
+created a blank(typescript) default app  
