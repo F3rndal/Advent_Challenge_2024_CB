@@ -12,7 +12,7 @@ Die Spielregeln:
 • Unter allen Teilnehmenden verlosen wir ein Weihnachtsgeschenk
 • Die Einreichungen gucken wir uns live auf Twitch zusammen an!
 
-day 1
+## day 1
 Select your App Framework
 As developer
 I want to select a framework so that I am able to start my development
@@ -28,19 +28,19 @@ make a decision which framework to use
 List of frameworks with pros and cons: 
 (research tool: ChatGPT)
 
-1. React Native
+### 1. React Native
 Platforms: iOS, Android
-Language: JavaScript (with TypeScript support)
-Pros:
+Language: JavaScript (with TypeScript support)  
+Pros:  
 - Write code once and use it for both platforms.
 - Large community and many libraries.
 - Almost native performance.
-- TypeScript support.
-Cons:
+- TypeScript support.  
+Cons:  
 - Some features require native modules (e.g., camera, Bluetooth).
 - Performance can lag with complex animations.
 
-2. Flutter
+### 2. Flutter
 Platforms: iOS, Android, Web, Desktop
 Language: Dart
 Pros:
@@ -51,7 +51,7 @@ Cons:
 - Dart is less popular than JavaScript.
 - Larger app size (default apps start at ~10 MB).
 
-3. Ionic
+### 3. Ionic
 Platforms: iOS, Android, Web (PWA)
 Language: JavaScript, HTML, CSS (with Angular, React, or Vue)
 Pros:
@@ -62,7 +62,7 @@ Cons:
 - No native UI, so slightly lower performance than Flutter or React Native.
 - UI can sometimes feel "less native."
 
-4. NativeScript
+### 4. NativeScript
 Platforms: iOS, Android
 Language: JavaScript, TypeScript, Angular, Vue
 Pros:
@@ -73,7 +73,7 @@ Cons:
 - Smaller community and fewer libraries than React Native or Flutter.
 - Can be more complex when working with advanced features.
 
-5. Xamarin
+### 5. Xamarin
 Platforms: iOS, Android, Windows
 Language: C#
 Pros:
@@ -84,7 +84,7 @@ Cons:
 - Can become complex for larger projects.
 - Slightly less flexible than other frameworks.
 
-6. Swift (for iOS) and Kotlin (for Android)
+### 6. Swift (for iOS) and Kotlin (for Android)
 Platforms: iOS (Swift), Android (Kotlin)
 Language: Swift or Kotlin
 Pros:
@@ -94,7 +94,7 @@ Cons:
 - No cross-platform support.
 - Slower development since you need separate codebases for each platform.
 
-7. Expo (React Native Extension)
+### 7. Expo (React Native Extension)
 - Platforms: iOS, Android
 - Language: JavaScript (with TypeScript support)
 Pros:
@@ -105,7 +105,7 @@ Cons:
 - Some advanced native features are not supported.
 - Can be limiting in more complex projects.
 
-8. Apache Cordova
+### 8. Apache Cordova
 Platforms: iOS, Android, Web
 Language: JavaScript, HTML, CSS
 Pros:
@@ -115,7 +115,7 @@ Cons:
 - Lower performance compared to native frameworks.
 - Fewer updates compared to modern frameworks.
 
-9. Framework7
+### 9. Framework7
 Platforms: iOS, Android, Web (PWA)
 Language: JavaScript, HTML, CSS (can be used with React or Vue)
 Pros:
@@ -124,7 +124,7 @@ Pros:
 Cons:
 - Not as flexible or performant as Flutter or React Native.
 
-10. Unity (for Game Apps)
+### 10. Unity (for Game Apps)
 Platforms: iOS, Android, Windows, Web
 Language: C#
 Pros:
@@ -135,7 +135,7 @@ Cons:
 - Not ideal for regular apps.
 - Can have a steep learning curve.
 
-11. Kotlin Multiplatform Mobile (KMM)
+### 11. Kotlin Multiplatform Mobile (KMM)
 Platforms: iOS, Android
 Language: Kotlin
 Pros:
@@ -146,7 +146,21 @@ Cons:
 - UI must be created separately for each platform.
 
 
-Decition which framework to use: 
+### Decition which framework to use: 
 I excluded all frameworks which are not JS based. Because that the only language I have experience in.
 My two favorites are Reacte Native and Ionic
 I choose Reacte Native because of the big community and the easy start by offering a complete environment.
+
+## Day 2
+Setup app project  
+As developer  
+I want to setup a development environment
+so that I can building the app  
+GIVEN  
+I have chosen a framework  
+WHEN  
+I installed the required tools like IDE, SDK, etc.  
+THEN  
+I should have a functioning environment ready to start coding  
+AND  
+I can run the frameworks default app  
