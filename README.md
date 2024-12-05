@@ -197,4 +197,27 @@ I should see the changes tracked and versioned in the repository
 I created a repository on day 1 on GitHub.  
 Now I play fetch with my VS Code Pets...
 
+## day 4  
+Prepare collect customer data  
+As user (Santas elf)
+I want to be able to add customer data.
+So that I am prepared to collect data.  
+GIVEN  
+I have a runnable app  
+WHEN  
+I started the app  
+THEN  
+I see three input fields: name, age and address  
+GIVEN  
+I stared the app  
+WHEN  
+I filled out one to all input fields  
+AND  
+I reopen the app  
+THEN  
+All inputs are empty  
+
+## day 5  
+
+
 
