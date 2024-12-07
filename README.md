@@ -218,6 +218,47 @@ THEN
 All inputs are empty  
 
 ## day 5  
+Validate customer data  
+As user (Santas elf)
+I want to see visual feedback when the customer input data is invalid.
+So that I can ensure correct input.  
+GIVEN  
+I started the app  
+WHEN  
+I typed in the name  
+AND  
+I entered characters other than letters or spaces  
+THEN  
+I get a visualization about a wrong input  
+GIVEN  
+I started the app  
+WHEN  
+I typed in the age  
+AND  
+I entered characters other than numbers not in between 3-99  
+THEN  
+I get a visualization about a wrong input  
+GIVEN  
+I started the app  
+WHEN  
+I typed in the address  
+AND  
+I entered characters other than letters, numbers or spaces  
+THEN  
+I get a visualization about a wrong input  
+
+## day 6  
+Store customer data  
+As user (Santas elf) I want to have persistent customer data in my app.
+So that I can view and edit they after reopening the app.  
+GIVEN  
+I filled out some/ all customer data  
+WHEN  
+I close the app  
+AND  
+I restart the app  
+THEN  
+I see exactly the same input i made last time before closing  
 
 
 
