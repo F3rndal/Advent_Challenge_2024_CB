@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import {Alert, TextInput, Button, StyleSheet, Text, View } from 'react-native';
+import {FlatList, Alert, TextInput, Button, StyleSheet, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
@@ -13,6 +13,9 @@ export default function App() {
 
   const [address, setAddress] = useState('');
   const [addressError, setAddressError] = useState('');
+
+  const [wish, setWish] = useState('');
+  const [list, setList] = useState([]); 
 
 
     useEffect(() => {
@@ -95,6 +98,17 @@ const saveData = async () => {
 
 
 
+    const handleAddToList = () => {
+      if (wish.trim() === "") {
+        alert("Don´t be shy. Enter a wish!");
+        return;
+      }
+  
+      setList([...list, wish]); 
+      setWish(""); 
+    }; 
+  
+
   return (
     <View style={styles.container}>
       <Text> Please enter your personal information</Text>
@@ -104,7 +118,6 @@ const saveData = async () => {
         placeholder="Enter your Name"
         value={name}
         onChangeText={validateName}
-       // onBlur={validateName}
       /> 
       {nameError ? <Text style={styles.errorText}>{nameError}</Text> : null}
 
@@ -113,7 +126,6 @@ const saveData = async () => {
         placeholder="Enter your Age"
         value={age}
         onChangeText={validateAge}
-        //onBlur={validateAge}
         keyboardType='numeric'
       /> 
       {ageError ? <Text style={styles.errorText}>{ageError}</Text> : null}
@@ -123,7 +135,6 @@ const saveData = async () => {
         placeholder="Enter your Address"
         value={address}
         onChangeText={validateAddress}
-        //onBlur={validateAddress}
       /> 
        {addressError ? <Text style={styles.errorText}>{addressError}</Text> : null}
       
@@ -132,6 +143,28 @@ const saveData = async () => {
       title="save" onPress={saveData}
       ></Button>
       <StatusBar style="auto" />
+
+
+      <Text style={styles.listTitle}>Wish Liste:</Text>
+      <FlatList
+        data={list}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item, index }) => (
+          <Text style={styles.listItem}>{`${index + 1}. ${item}`}</Text>
+        )}
+      />
+
+<TextInput
+      style={styles.input}
+      placeholder="Enter a wish"
+      value={wish}
+      onChangeText={setWish}
+    />
+
+      <Button 
+      title="Add" onPress={handleAddToList}
+      ></Button>
+
     </View>
   );
 }
@@ -151,7 +184,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 30,
     backgroundColor: '#fff',
-    marginBottom: 20,
+    marginBottom: 20, 
+    marginTop: 20,
   },
   label: {
     fontSize: 18,
@@ -160,6 +194,16 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     fontSize: 12,
+    fontWeight: "bold", 
     marginBottom: 15,
+  },
+  listTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginVertical: 10,
+  },
+  listItem: {
+    fontSize: 16,
+    paddingVertical: 5,
   },
 });

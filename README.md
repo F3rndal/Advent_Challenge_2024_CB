@@ -260,5 +260,35 @@ I restart the app
 THEN  
 I see exactly the same input i made last time before closing  
 
+## day 7
+Prepare adding wishes  
+As user (Santas elf) I want to add items  
+So that I get a list of items below the customer data  
+GIVEN  
+I started the app  
+WHEN  
+I have the customer data fields at the top of the view  
+THEN  
+I see a add button on the bottom of the screen  
+GIVEN  
+I see the add button  
+AND  
+I have no items on the screen  
+WHEN  
+I clicked the add button  
+THEN  
+A new empty item is added below the customer data  
+GIVEN  
+I added at least one item to the list  
+WHEN  
+I clicked the add button  
+THEN  
+A new empty item is added below the item list  
+GIVEN  
+I added at least one item to the list  
+WHEN  
+I restart the app  
+THEN  
+The list is empty  
 
 
