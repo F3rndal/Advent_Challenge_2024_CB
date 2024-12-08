@@ -291,4 +291,31 @@ I restart the app
 THEN  
 The list is empty  
 
+## day 8  
+Description for a wish  
+As user (Santas elf),
+I want to add a description for a wish.
+So that I know what wishes the customer has  
+GIVEN  
+I clicked the add button  
+WHEN  
+A new wish item appears  
+THEN  
+The item has an input field  
+GIVEN  
+I added at least one item to the list  
+AND  
+The item has no description  
+WHEN
+A click on the item's input
+THEN
+I can add a description to the item
+GIVEN
+I added at least one item to the list
+AND
+The item as already a description
+WHEN
+A click on the item's input
+THEN
+I can edit the description of the item
 

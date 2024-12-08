@@ -14,7 +14,7 @@ export default function App() {
   const [address, setAddress] = useState('');
   const [addressError, setAddressError] = useState('');
 
-  const [wish, setWish] = useState('');
+  //const [wish, setWish] = useState('');
   const [list, setList] = useState([]); 
 
 
@@ -98,20 +98,36 @@ const saveData = async () => {
 
 
 
-    const handleAddToList = () => {
-      if (wish.trim() === "") {
-        alert("Don´t be shy. Enter a wish!");
-        return;
-      }
-  
-      setList([...list, wish]); 
-      setWish(""); 
-    }; 
+// Neues Wunsch-Item hinzufügen
+const handleAddToList = () => {
+  setList([...list, { text: '', isEditing: true }]); 
+};
+
+// Wunsch in den Bearbeitungsmodus setzen
+const handleEditWish = (index) => {
+  const updatedList = [...list]; 
+  updatedList[index].isEditing = true; 
+  setList(updatedList);
+};
+
+// Wunsch speichern
+const handleSaveWish = (index) => {
+  const updatedList = [...list];
+  updatedList[index].isEditing = false; 
+  setList(updatedList);
+};
+
+// Änderungen am Wunsch-Text verarbeiten
+const handleWishChange = (index, text) => {
+  const updatedList = [...list]; 
+  updatedList[index].text = text; 
+  setList(updatedList);
+};
   
 
   return (
     <View style={styles.container}>
-      <Text> Please enter your personal information</Text>
+      <Text style={styles.label}> Please enter your personal information</Text>
       
       <TextInput
         style={styles.input}
@@ -150,16 +166,27 @@ const saveData = async () => {
         data={list}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => (
-          <Text style={styles.listItem}>{`${index + 1}. ${item}`}</Text>
+          <View style={styles.listItem}>
+            {item.isEditing ? ( 
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your wish"
+                value={item.text} 
+                onChangeText={(text) => handleWishChange(index, text)} 
+              />
+            ) : (
+              <Text style={styles.text}>{`${index + 1}. ${item.text}`}</Text> 
+            )}
+            <Button
+              title={item.isEditing ? 'Save' : 'Edit'} 
+              onPress={() =>
+                item.isEditing ? handleSaveWish(index) : handleEditWish(index) 
+              }
+            />
+          </View>
         )}
       />
 
-<TextInput
-      style={styles.input}
-      placeholder="Enter a wish"
-      value={wish}
-      onChangeText={setWish}
-    />
 
       <Button 
       title="Add" onPress={handleAddToList}
@@ -175,10 +202,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 40,
   },
   input: {
     height: 40,
-    width: '50%',
+    width: 200,
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 5,
@@ -186,6 +214,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginBottom: 20, 
     marginTop: 20,
+    marginRight: 10,
   },
   label: {
     fontSize: 18,
@@ -203,7 +232,12 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   listItem: {
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    marginBottom: 10,
+  },
+  text: {
     fontSize: 16,
-    paddingVertical: 5,
+    marginRight: 10,
   },
 });
