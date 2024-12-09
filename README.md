@@ -319,3 +319,36 @@ A click on the item's input
 THEN
 I can edit the description of the item
 
+## day 9
+Mark wish as finished  
+As user (Santas elf),
+I want to have the possibility to mark a wish as finished.
+So that I have an overview of the progress  
+GIVEN  
+I clicked the add button  
+WHEN  
+A new wish item appears  
+THEN  
+The item has a checkbox  
+AND  
+The checkbox is unchecked by default  
+GIVEN  
+I added at least one item to the list  
+AND  
+The checkbox of an item is unchecked  
+WHEN  
+A click on the checkbox  
+THEN  
+The checkbox is checked  
+AND  
+I have a visual feedback that the wish is finished  
+GIVEN  
+I added at least one item to the list  
+AND  
+The checkbox of an item is checked  
+WHEN  
+A click on the checkbox  
+THEN  
+The checkbox is unchecked  
+AND  
+I have a visual feedback that the wish is unfinished 
