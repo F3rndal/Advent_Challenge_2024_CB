@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import {FlatList, Alert, TextInput, Button, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Alert, TextInput, Button, StyleSheet, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Checkbox } from 'react-native-paper';
 
 export default function App() {
 
@@ -100,7 +101,7 @@ const saveData = async () => {
 
 // Neues Wunsch-Item hinzufügen
 const handleAddToList = () => {
-  setList([...list, { text: '', isEditing: true }]); 
+  setList([...list, { text: '', isEditing: true, isChecked: false }]); 
 };
 
 // Wunsch in den Bearbeitungsmodus setzen
@@ -124,6 +125,12 @@ const handleWishChange = (index, text) => {
   setList(updatedList);
 };
   
+const toggleCheck = (index) => {
+  const updatedList = [...list];
+  updatedList[index].isChecked = !updatedList[index].isChecked;
+  setList(updatedList);
+};
+
 
   return (
     <View style={styles.container}>
@@ -167,6 +174,10 @@ const handleWishChange = (index, text) => {
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => (
           <View style={styles.listItem}>
+            <Checkbox
+              status={item.isChecked ? 'checked' : 'unchecked'}
+              onPress={() => toggleCheck(index)}
+            />
             {item.isEditing ? ( 
               <TextInput
                 style={styles.input}
@@ -175,7 +186,7 @@ const handleWishChange = (index, text) => {
                 onChangeText={(text) => handleWishChange(index, text)} 
               />
             ) : (
-              <Text style={styles.text}>{`${index + 1}. ${item.text}`}</Text> 
+              <Text style={[styles.text, item.isChecked && styles.strikeThroughText,]}>{`${index + 1}. ${item.text}`}</Text> 
             )}
             <Button
               title={item.isEditing ? 'Save' : 'Edit'} 
@@ -239,5 +250,9 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     marginRight: 10,
+  },
+  strikeThroughText: {
+    textDecorationLine: 'line-through',
+    color: 'gray',
   },
 });
