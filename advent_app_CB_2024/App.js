@@ -124,6 +124,12 @@ const handleWishChange = (index, text) => {
   updatedList[index].text = text; 
   setList(updatedList);
 };
+
+//Wunsch entfernen
+const handleDeleteWish = (index) => {
+  const updatedList = list.filter((_, i) => i !== index); 
+  setList(updatedList); 
+};
   
 const toggleCheck = (index) => {
   const updatedList = [...list];
@@ -188,12 +194,20 @@ const toggleCheck = (index) => {
             ) : (
               <Text style={[styles.text, item.isChecked && styles.strikeThroughText,]}>{`${index + 1}. ${item.text}`}</Text> 
             )}
+            <View style={{ flexDirection: 'row', marginRight: 10}}>
             <Button
               title={item.isEditing ? 'Save' : 'Edit'} 
               onPress={() =>
                 item.isEditing ? handleSaveWish(index) : handleEditWish(index) 
               }
             />
+            </View>
+            <View style={{ flexDirection: 'row', marginRight: 10}}>
+            <Button 
+            title='Delete'
+            onPress={() => handleDeleteWish(index)}
+            />
+            </View>
           </View>
         )}
       />
@@ -213,7 +227,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 40,
+    paddingVertical: 40,
+    paddingHorizontal: 20,
   },
   input: {
     height: 40,
@@ -255,4 +270,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'line-through',
     color: 'gray',
   },
+  buttonSpacing: {
+    marginHorizontal: 10,
+  }
 });

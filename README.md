@@ -352,3 +352,17 @@ THEN
 The checkbox is unchecked  
 AND  
 I have a visual feedback that the wish is unfinished 
+
+## day 10
+Delete a wish  
+As user (Santas elf),
+I want to have the possibility to remove a wish.
+So I am able to delete mistakenly added wishes  
+GIVEN  
+I added a wish  
+WHEN  
+I want to delete the wish  
+THEN  
+I am able to delete the wish  
+Note:
+Think about how you can do this (perhaps with a button or otherwise).
