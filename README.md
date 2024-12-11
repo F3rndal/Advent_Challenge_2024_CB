@@ -366,3 +366,14 @@ THEN
 I am able to delete the wish  
 Note:
 Think about how you can do this (perhaps with a button or otherwise).
+## day 11  
+Save wishes  
+As user (Santas elf),
+I want to have persistent wishes.
+So I do not need to add the wishes every time I open the app  
+GIVEN  
+I added some wishes  
+WHEN  
+I restart the app  
+THEN  
+I see the wishes exactly as before closing the app  

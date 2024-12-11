@@ -15,7 +15,6 @@ export default function App() {
   const [address, setAddress] = useState('');
   const [addressError, setAddressError] = useState('');
 
-  //const [wish, setWish] = useState('');
   const [list, setList] = useState([]); 
 
 
@@ -97,11 +96,33 @@ const saveData = async () => {
     }
   };
 
+  const STORAGE_KEY = '@wish_list';
+
+  // Liste speichern
+  const saveListToStorage = async (listToSave) => {
+    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(listToSave));
+  };
+  
+  //Liste laden
+  const loadListFromStorage = async () => {
+    const savedList = await AsyncStorage.getItem(STORAGE_KEY);
+    if (savedList) {
+      setList(JSON.parse(savedList));
+    }
+  };
+  
+
+  // Beim Start Liste laden
+  useEffect(() => {
+    loadListFromStorage();
+  }, []);
 
 
 // Neues Wunsch-Item hinzufügen
 const handleAddToList = () => {
-  setList([...list, { text: '', isEditing: true, isChecked: false }]); 
+  const updatedList = [...list, { text: '', isEditing: true, isChecked: false }]; 
+  setList(updatedList);
+  saveListToStorage(updatedList);
 };
 
 // Wunsch in den Bearbeitungsmodus setzen
@@ -116,6 +137,7 @@ const handleSaveWish = (index) => {
   const updatedList = [...list];
   updatedList[index].isEditing = false; 
   setList(updatedList);
+  saveListToStorage(updatedList);
 };
 
 // Änderungen am Wunsch-Text verarbeiten
@@ -129,12 +151,14 @@ const handleWishChange = (index, text) => {
 const handleDeleteWish = (index) => {
   const updatedList = list.filter((_, i) => i !== index); 
   setList(updatedList); 
+  saveListToStorage(updatedList);
 };
   
 const toggleCheck = (index) => {
   const updatedList = [...list];
   updatedList[index].isChecked = !updatedList[index].isChecked;
   setList(updatedList);
+  saveListToStorage(updatedList);
 };
 
 
@@ -270,7 +294,5 @@ const styles = StyleSheet.create({
     textDecorationLine: 'line-through',
     color: 'gray',
   },
-  buttonSpacing: {
-    marginHorizontal: 10,
-  }
+
 });
